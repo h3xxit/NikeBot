@@ -28,23 +28,24 @@ namespace NikeBot
 
 
         readonly By buyDivXPath = By.XPath("//*[@class='buying-tools-container']");
-        readonly By buyBtnXPath = By.XPath("//*[@class='buying-tools-container ']/div/button");
+        readonly By buyBtnXPath = By.XPath("//*[@class='buying-tools-container']/button");
         private By sizeXPath()
         {
             return By.XPath("//*[text()='EU " + sizeTextBox.Text +"']");
         }
         readonly By cartXPath = By.XPath("//*[@aria-label='Bag']");
         readonly By checkoutBtnXPath = By.XPath("//*[@data-automation='member-checkout-button']");
-        readonly By consentCheckboxXPath = By.XPath("//*[@class='checkbox-container']/input");
-        readonly By consentCheckboxParentXPath = By.XPath("//*[@class='checkbox-container']");
-        readonly By consentCheckboxParentParentXPath = By.XPath("//*[@class='checkbox-container']/..");
+        readonly By consentCheckboxXPath = By.XPath("//*[@class='gdprConsentCheckbox']/label/input");
+        readonly By consentCheckboxParentXPath = By.XPath("//*[@class='gdprConsentCheckbox']/label");
+        readonly By consentCheckboxParentParentXPath = By.XPath("//*[@class='gdprConsentCheckbox']");
         readonly By finishShippingBtnXPath = By.Id("shippingSubmit");//By.XPath("//*[@id='shippingSubmit']");
-        readonly By finishBillingBtnXPath = By.Id("billingSubmit");//By.XPath("//*[@id='billingSubmit']");
+        readonly By finishBillingBtnXPath = By.ClassName("button-submit");//By.XPath("//*[@id='billingSubmit']");
         readonly By nameOnCardXPath = By.Id("CreditCardHolder"); //By.XPath("//*[@id='CreditCardHolder']");
-        readonly By cardNumberXPath = By.Id("KKnr"); //By.XPath("//*[@id='KKnr']");
-        readonly By securityCodeXPath = By.Id("CCCVC"); //By.XPath("//*[@id='CCCVC']");
-        readonly By paymentIFrameXPath = By.Id("paymentIFrame"); //By.XPath("//*[@id='paymentIFrame']");
-        readonly By btnPurchaseXPath = By.Id("BtnPurchase"); 
+        readonly By cardNumberXPath = By.Id("cardNumber-input"); //By.XPath("//*[@id='KKnr']");
+        readonly By securityCodeXPath = By.Id("cardCvc-input"); //By.XPath("//*[@id='CCCVC']");
+        readonly By paymentIFrameXPath = By.XPath("//*[@title='payment']"); //By.XPath("//*[@id='paymentIFrame']");
+        readonly By btnPurchaseXPath = By.Id("BtnPurchase");
+        readonly By expiration = By.Id("cardExpiry-input");
         private By cardMonth(int nr)
         {
             return By.XPath("//*[@id='KKMonth']/option[@value=" + nr + "]");
@@ -54,7 +55,7 @@ namespace NikeBot
             return By.XPath("//*[@id='KKYear']/option[@value=" + nr + "]");
         }
         readonly string testShoe = "https://www.nike.com/ro/launch/t/ispa-overreact-sandal-wheat";
-        readonly string realShoe = "https://www.nike.com/ro/launch/t/sb-dunk-low-medicom-be-rbrick1";
+        readonly string realShoe = "https://www.nike.com/ro/launch/t/air-jordan-1-zoom-crater";
 
         IWebDriver driver;
         Actions builder;
@@ -67,7 +68,7 @@ namespace NikeBot
 
         private void openChromeBtn_Click(object sender, EventArgs e)
         {
-            startThisBot(realShoe);
+            startThisBot(linkTextBox.Text);
         }
 
         private void startThisBot(string shoeUrl)
@@ -104,7 +105,7 @@ namespace NikeBot
 
             RefreshUntilBuy();
 
-            Cart();
+            //Cart();
 
             Checkout(nameOnCard, cardNumber, expirationMonth, expirationYear, securityCode);
         }
@@ -181,16 +182,9 @@ namespace NikeBot
             while(true)
             {
                 IWebElement buyButton = null, comingSoon = null;
-                shortWait.Until(driver =>
+                CanGetElement(buyBtnXPath, shortWait);
+                /*shortWait.Until(driver =>
                 {
-                    try
-                    {
-                        buyButton = driver.FindElement(buyBtnXPath);
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Diagnostics.Debug.WriteLine("SearchBuy" + ex.Message);
-                    }
                     try
                     {
                         comingSoon = driver.FindElement(buyDivXPath);
@@ -199,8 +193,16 @@ namespace NikeBot
                     {
                         System.Diagnostics.Debug.WriteLine("SearchComing" + ex.Message);
                     }
+                    try
+                    {
+                        buyButton = driver.FindElement(buyBtnXPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine("SearchBuy" + ex.Message);
+                    }
                     return buyButton != null || comingSoon != null;
-                });
+                });*/
                 if(buyButton != null)
                 {
                     CanGetElement(sizeXPath(), wait);
@@ -209,8 +211,8 @@ namespace NikeBot
                     CanGetElement(buyBtnXPath, wait);
                     retryingFindClick(buyBtnXPath);
 
-                    CanGetElement(cartXPath, wait);
-                    retryingFindClick(cartXPath);
+                    /*CanGetElement(cartXPath, wait);
+                    retryingFindClick(cartXPath);*/
                     System.Diagnostics.Debug.WriteLine("Finished RefreshUntilBuy");
                     return;
                 }
@@ -248,41 +250,43 @@ namespace NikeBot
             IWebElement Indicator = CanGetElement(consentCheckboxParentParentXPath, wait);
             IJavaScriptExecutor exec = (IJavaScriptExecutor)driver;
             exec.ExecuteScript("arguments[0].click();", driver.FindElement(consentCheckboxXPath));
-            CanGetElement(finishShippingBtnXPath, wait);
-            retryingFindClick(finishShippingBtnXPath);
+            /*CanGetElement(finishShippingBtnXPath, wait);
+            retryingFindClick(finishShippingBtnXPath);*/
 
             if (Indicator.GetAttribute("class") == "gdpr-inner-section is-invalid-gdpr")
             {
                 exec.ExecuteScript("arguments[0].click();", driver.FindElement(consentCheckboxXPath));
-                CanGetElement(finishShippingBtnXPath, wait);
-                retryingFindClick(finishShippingBtnXPath);
+                /*CanGetElement(finishShippingBtnXPath, wait);
+                retryingFindClick(finishShippingBtnXPath);*/
             }
 
             
-            CanGetElement(finishBillingBtnXPath, wait);
-            retryingFindClick(finishBillingBtnXPath);
 
             CanGetElement(paymentIFrameXPath, wait);
             driver.SwitchTo().Frame(driver.FindElement(paymentIFrameXPath));
 
-            CanGetElement(nameOnCardXPath, wait);
-            retryingFindSendKeys(nameOnCardXPath, nameOnCard);
+            //CanGetElement(nameOnCardXPath, wait);
+            //retryingFindSendKeys(nameOnCardXPath, nameOnCard);
             retryingFindSendKeys(cardNumberXPath, cardNumber.Substring(0, 4));
             retryingFindSendKeys(cardNumberXPath, cardNumber.Substring(4, 4));
             retryingFindSendKeys(cardNumberXPath, cardNumber.Substring(8, 4));
             retryingFindSendKeys(cardNumberXPath, cardNumber.Substring(12, 4));
-            
+
             /*foreach(char c in cardNumber.ToCharArray())
             {
                 retryingFindSendKeys(cardNumberXPath, c + "");
             }*/
             //retryingFindSendKeys(cardNumberXPath, cardNumber);
-            retryingFindClick(cardMonth(expirationMonth));
-            retryingFindClick(cardYear(expirationYear));
+            retryingFindSendKeys(expiration, expirationMonth + "" + expirationYear);
+            /*retryingFindClick(cardMonth(expirationMonth));
+            retryingFindClick(cardYear(expirationYear));*/
             retryingFindSendKeys(securityCodeXPath, securityCode);
-            retryingFindClick(btnPurchaseXPath);
+            //retryingFindClick(btnPurchaseXPath);
 
             driver.SwitchTo().DefaultContent();
+
+            CanGetElement(finishBillingBtnXPath, wait);
+            retryingFindClick(finishBillingBtnXPath);
 
             System.Diagnostics.Debug.WriteLine("Finished Checkout");
         }

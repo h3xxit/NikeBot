@@ -1965,3 +1965,24 @@
 [0901/151200.369:ERROR:exception_snapshot_win.cc(99)] thread ID 23544 not found in process
 [0901/151200.412:ERROR:process_reader_win.cc(123)] NtOpenThread: {Zugriff verweigert} Ein Prozess hat einen Zugriff auf ein Objekt angefordert, aber ihm wurden nicht die Rechte für den Zugriff erteilt. (0xc0000022)
 [0901/151200.412:ERROR:exception_snapshot_win.cc(99)] thread ID 17112 not found in process
+[0903/132437.452:ERROR:process_reader_win.cc(123)] NtOpenThread: {Zugriff verweigert} Ein Prozess hat einen Zugriff auf ein Objekt angefordert, aber ihm wurden nicht die Rechte für den Zugriff erteilt. (0xc0000022)
+[0903/132437.486:ERROR:exception_snapshot_win.cc(99)] thread ID 15452 not found in process
+[0903/132437.529:ERROR:process_reader_win.cc(151)] SuspendThread: Zugriff verweigert (0x5)
+[0903/132437.530:ERROR:process_reader_win.cc(151)] SuspendThread: Zugriff verweigert (0x5)
+[0903/132437.530:ERROR:process_reader_win.cc(151)] SuspendThread: Zugriff verweigert (0x5)
+[0903/132437.530:ERROR:process_reader_win.cc(151)] SuspendThread: Zugriff verweigert (0x5)
+[0903/132437.530:ERROR:process_reader_win.cc(151)] SuspendThread: Zugriff verweigert (0x5)
+[0903/132437.530:ERROR:process_reader_win.cc(123)] NtOpenThread: {Zugriff verweigert} Ein Prozess hat einen Zugriff auf ein Objekt angefordert, aber ihm wurden nicht die Rechte für den Zugriff erteilt. (0xc0000022)
+[0903/132437.530:ERROR:exception_snapshot_win.cc(99)] thread ID 12524 not found in process
+[0904/130135.400:ERROR:process_reader_win.cc(151)] SuspendThread: Zugriff verweigert (0x5)
+[0904/130135.433:ERROR:process_reader_win.cc(151)] SuspendThread: Zugriff verweigert (0x5)
+[0904/130135.433:ERROR:process_reader_win.cc(123)] NtOpenThread: {Zugriff verweigert} Ein Prozess hat einen Zugriff auf ein Objekt angefordert, aber ihm wurden nicht die Rechte für den Zugriff erteilt. (0xc0000022)
+[0904/130135.435:ERROR:exception_snapshot_win.cc(99)] thread ID 20896 not found in process
+[0904/130135.515:ERROR:process_reader_win.cc(151)] SuspendThread: Zugriff verweigert (0x5)
+[0904/130135.530:ERROR:process_reader_win.cc(151)] SuspendThread: Zugriff verweigert (0x5)
+[0904/130135.531:ERROR:process_reader_win.cc(151)] SuspendThread: Zugriff verweigert (0x5)
+[0904/130135.531:ERROR:process_reader_win.cc(151)] SuspendThread: Zugriff verweigert (0x5)
+[0904/130135.531:ERROR:process_reader_win.cc(151)] SuspendThread: Zugriff verweigert (0x5)
+[0904/130135.531:ERROR:process_reader_win.cc(151)] SuspendThread: Zugriff verweigert (0x5)
+[0904/130135.531:ERROR:process_reader_win.cc(123)] NtOpenThread: {Zugriff verweigert} Ein Prozess hat einen Zugriff auf ein Objekt angefordert, aber ihm wurden nicht die Rechte für den Zugriff erteilt. (0xc0000022)
+[0904/130135.531:ERROR:exception_snapshot_win.cc(99)] thread ID 17192 not found in process

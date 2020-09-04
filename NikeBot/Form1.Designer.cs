@@ -50,6 +50,8 @@
             this.longWaitLabel = new System.Windows.Forms.Label();
             this.shortWaitTextBox = new System.Windows.Forms.TextBox();
             this.longWaitTextBox = new System.Windows.Forms.TextBox();
+            this.linkTextBox = new System.Windows.Forms.TextBox();
+            this.linkLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // openChromeBtn
@@ -143,7 +145,7 @@
             this.expirationMonthTextBox.Name = "expirationMonthTextBox";
             this.expirationMonthTextBox.Size = new System.Drawing.Size(100, 20);
             this.expirationMonthTextBox.TabIndex = 11;
-            this.expirationMonthTextBox.Text = "2";
+            this.expirationMonthTextBox.Text = "02";
             // 
             // expirationYearTextBox
             // 
@@ -151,7 +153,7 @@
             this.expirationYearTextBox.Name = "expirationYearTextBox";
             this.expirationYearTextBox.Size = new System.Drawing.Size(100, 20);
             this.expirationYearTextBox.TabIndex = 12;
-            this.expirationYearTextBox.Text = "2040";
+            this.expirationYearTextBox.Text = "40";
             // 
             // expirationYearLabel
             // 
@@ -203,6 +205,7 @@
             this.testButton.TabIndex = 18;
             this.testButton.Text = "Start Test Bot";
             this.testButton.UseVisualStyleBackColor = true;
+            this.testButton.Visible = false;
             this.testButton.Click += new System.EventHandler(this.testButton_Click);
             // 
             // shortWaitLabel
@@ -239,11 +242,29 @@
             this.longWaitTextBox.TabIndex = 22;
             this.longWaitTextBox.Text = "10";
             // 
+            // linkTextBox
+            // 
+            this.linkTextBox.Location = new System.Drawing.Point(152, 202);
+            this.linkTextBox.Name = "linkTextBox";
+            this.linkTextBox.Size = new System.Drawing.Size(165, 20);
+            this.linkTextBox.TabIndex = 23;
+            // 
+            // linkLabel
+            // 
+            this.linkLabel.AutoSize = true;
+            this.linkLabel.Location = new System.Drawing.Point(89, 205);
+            this.linkLabel.Name = "linkLabel";
+            this.linkLabel.Size = new System.Drawing.Size(27, 13);
+            this.linkLabel.TabIndex = 24;
+            this.linkLabel.Text = "Link";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.linkLabel);
+            this.Controls.Add(this.linkTextBox);
             this.Controls.Add(this.longWaitTextBox);
             this.Controls.Add(this.shortWaitTextBox);
             this.Controls.Add(this.longWaitLabel);
@@ -298,6 +319,8 @@
         private System.Windows.Forms.Label longWaitLabel;
         private System.Windows.Forms.TextBox shortWaitTextBox;
         private System.Windows.Forms.TextBox longWaitTextBox;
+        private System.Windows.Forms.TextBox linkTextBox;
+        private System.Windows.Forms.Label linkLabel;
     }
 }
 
